@@ -94,7 +94,8 @@
 
 <script>
 export default {
-
+    name:"",
+    props:["list"]
 }
 </script>
 

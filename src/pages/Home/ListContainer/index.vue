@@ -3,7 +3,7 @@
         <div class="sortList clearfix">
             <div class="center">
                 <!--banner轮播-->
-                <div class="swiper-container" id="mySwiper">
+                <div class="swiper-container" ref="mySwiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" v-for="(item, index) in bannerList" :key="item.id">
                             <img :src="item.imgUrl" />
@@ -104,15 +104,48 @@
 import { mapState } from 'vuex'
 import Swiper from 'swiper'
 export default {
-    name:'',
-    mounted(){
+    name: '',
+    mounted() {
         // 派发action，发请求
         this.$store.dispatch('getBannerList')
+        
+        // setTimeout(() => {
+        //     var mySwiper = new Swiper(document.querySelector(".swiper-container"), {
+        //         loop: true,
+        //         pagination: {
+        //             el: ".swiper-pagination",
+        //             clickable: true
+        //         },
+        //         navigation: {
+        //             nextEl: ".swiper-button-next",
+        //             prevEl: ".swiper-button-prev"
+        //         },
+        //     });
+        // }, 1000)
     },
-    computed:{
+    computed: {
         ...mapState({
-            bannerList: state=>state.home.bannerList
+            bannerList: state => state.home.bannerList
         })
+    },
+    watch: {
+        bannerList: {
+            handler(newValue, oldValue) {
+                this.$nextTick(() => {
+                    var mySwiper = new Swiper(this.$refs.mySwiper, {
+                        loop: true,
+                        pagination: {
+                            el: ".swiper-pagination",
+                            clickable: true
+                        },
+                        navigation: {
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev"
+                        },
+                    });
+                })
+            }
+        },
     }
 }
 </script>

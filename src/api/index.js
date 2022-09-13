@@ -7,6 +7,8 @@ import mockRequests from './mockAjax'
 //发请求,返回的结果是Promise对象
 export const reqCategoryList = ()=> requests.get('/product/getBaseCategoryList')
 
-
 // 获取banner
 export const reqGetBannerList = ()=> mockRequests.get('/banner')
+
+// 获取floor
+export const reqGetFloorList = () => mockRequests.get('/floor')
