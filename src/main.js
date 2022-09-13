@@ -12,9 +12,6 @@ import store from "@/store";
 import  '@/mock/mockServer';
 
 import 'swiper/css/swiper.css'
-// 测试
-// import {reqCategoryList} from '@/api'
-// reqCategoryList()
 
 Vue.config.productionTip = false;
 
